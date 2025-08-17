@@ -1,10 +1,28 @@
-import React from 'react'
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const WalletDeleteModel = ({isDeleteOpen , setIsDeleteOpen}) => {
+const WalletDeleteModel = ({ isDeleteOpen, setIsDeleteOpen }) => {
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+    exit: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } },
+  };
+
   return (
-    <div>
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="flex flex-col items-center bg-white shadow-md rounded-xl py-6 px-5 md:w-[460px] w-[370px] border border-gray-200 ">
+    <AnimatePresence>
+        <motion.div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.2 } }}
+          exit={{ opacity: 0, transition: { duration: 0.2 } }}
+        >
+          <motion.div
+            className="flex flex-col items-center bg-white shadow-md rounded-xl py-6 px-5 md:w-[460px] w-[370px] border border-gray-200"
+            variants={modalVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
             <div className="flex items-center justify-center p-4 bg-red-100 rounded-full">
               <svg
                 width="24"
@@ -49,10 +67,10 @@ const WalletDeleteModel = ({isDeleteOpen , setIsDeleteOpen}) => {
                 حذف
               </button>
             </div>
-          </div>
-        </div>
-    </div>
-  )
-}
+          </motion.div>
+        </motion.div>
+    </AnimatePresence>
+  );
+};
 
-export default WalletDeleteModel
+export default WalletDeleteModel;
