@@ -6,6 +6,8 @@ import WalletDeleteModel from "../WalletDeleteModel/WalletDeleteModel"
 
 
 
+
+
 const WalletCard = () => {
 
   const gradients = [
@@ -29,6 +31,7 @@ const WalletCard = () => {
 // this state for change color wallet 
   const [bgGradient] = useState(gradients[Math.floor(Math.random() * gradients.length)]);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
 
 
   return (
@@ -67,6 +70,7 @@ const WalletCard = () => {
       {isDeleteOpen && (
         <WalletDeleteModel isDeleteOpen={isDeleteOpen} setIsDeleteOpen = {setIsDeleteOpen} />
       )}
+
    </>
   );
 };
