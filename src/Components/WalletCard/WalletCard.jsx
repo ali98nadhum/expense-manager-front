@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Lottie from "lottie-react";
 import PaymentAnimation from "../../animation/Payment Success.json";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
+import WalletDeleteModel from "../WalletDeleteModel/WalletDeleteModel"
+
+
 
 const WalletCard = () => {
 
@@ -24,10 +27,12 @@ const WalletCard = () => {
 
 
 // this state for change color wallet 
-  const [bgGradient] = useState(gradients[Math.floor(Math.random() * gradients.length)]
-  );
+  const [bgGradient] = useState(gradients[Math.floor(Math.random() * gradients.length)]);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
 
   return (
+   <>
     <div
       className={`bg-gradient-to-r ${bgGradient} text-white rounded-2xl shadow-lg p-4 w-full sm:w-80 relative overflow-hidden`}
     >
@@ -52,11 +57,17 @@ const WalletCard = () => {
         <button className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-3 py-2 rounded-lg text-sm font-medium transition">
           <FiEdit /> تعديل
         </button>
-        <button className="flex items-center gap-2 bg-red-500 hover:bg-red-600 px-3 py-2 rounded-lg text-sm font-medium transition">
+        <button onClick={() => setIsDeleteOpen(!isDeleteOpen)} className="flex items-center gap-2 bg-red-500 hover:bg-red-600 px-3 py-2 rounded-lg text-sm font-medium transition">
           <FiTrash2 /> حذف
         </button>
       </div>
     </div>
+
+      {/* ===== Delete Modal ===== */}
+      {isDeleteOpen && (
+        <WalletDeleteModel isDeleteOpen={isDeleteOpen} setIsDeleteOpen = {setIsDeleteOpen} />
+      )}
+   </>
   );
 };
 

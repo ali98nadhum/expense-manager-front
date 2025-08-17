@@ -32,7 +32,6 @@ const WalletPage = () => {
       <WalletCard/>
     
     </div>
-    
 
     </>
   );
