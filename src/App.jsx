@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import WalletPage from "./pages/WalletPage/WalletPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
