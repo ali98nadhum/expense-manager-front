@@ -7,6 +7,7 @@ import WalletPage from "./pages/WalletPage/WalletPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import PublicRoute from "./Components/PublicRoute/PublicRoute";
 
 function App() {
   return (
@@ -16,8 +17,10 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/wallet" element={ <WalletPage/> } />
-          <Route path="/login" element= { <LoginPage/> } />
-          <Route path="/register" element={ <RegisterPage/> } />
+            <Route element={<PublicRoute />}>
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
