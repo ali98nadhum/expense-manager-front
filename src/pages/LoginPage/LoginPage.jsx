@@ -1,34 +1,43 @@
-
 import { motion } from "framer-motion";
 import { FiMail, FiLock } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { Link} from "react-router-dom";
-
-
+import { Link } from "react-router-dom";
+import { authStore } from "../../store/AuthStore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const schema = Yup.object().shape({
   email: Yup.string().email("يرجى ادخال اميل صالح").required("الاميل مطلوب"),
-  password: Yup.string()
-    .required("الرمز مطلوب"),
+  password: Yup.string().required("الرمز مطلوب"),
 });
 
 const LoginPage = () => {
+  const { login, isLoading, setIsLoading } = authStore();
+  const navigate = useNavigate();
 
   const {
-      register,
-      handleSubmit,
-      reset,
-      formState: { errors },
-    } = useForm({
-      resolver: yupResolver(schema),
-    });
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-    const handleLogin = () => {
-      console.log("تم تسجيل الدخول");
-      
+  const handleLogin = async (data) => {
+    setIsLoading(true);
+    const result = await login(data.email, data.password);
+    setIsLoading(false);
+
+    if (result.success) {
+      reset();
+      navigate("/");
+    } else {
+      toast.error(result.error);
     }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 p-4">
       <motion.div
@@ -80,14 +89,18 @@ const LoginPage = () => {
             whileTap={{ scale: 0.95 }}
             type="submit"
             className="w-full bg-indigo-500 text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:bg-indigo-600 transition"
+            disabled={isLoading}
           >
-            تسجيل الدخول
+            {isLoading ? "جاري تسجيل الدخول..." : "تسجيل الدخول"}
           </motion.button>
         </form>
 
         <p className="text-center text-gray-500 mt-4 text-sm">
           لا تملك حساب؟{" "}
-          <Link to="/register" className="text-indigo-500 font-semibold hover:underline">
+          <Link
+            to="/register"
+            className="text-indigo-500 font-semibold hover:underline"
+          >
             أنشئ حساب الآن
           </Link>
         </p>
