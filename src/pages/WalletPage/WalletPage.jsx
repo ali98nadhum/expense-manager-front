@@ -22,7 +22,7 @@ const WalletPage = () => {
 
 
   return (
-    <>
+    <div className="p-5">
     {/* ===== Header page ===== */}
        <div className="header-wallet-page flex items-center justify-center px-3">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white w-full sm:w-5/6 px-4 py-3 rounded-2xl shadow-lg">
@@ -58,7 +58,7 @@ const WalletPage = () => {
         onSubmit={handleAddCard}
       />
     )}
-    </>
+    </div>
   );
 };
 

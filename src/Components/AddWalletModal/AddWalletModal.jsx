@@ -7,8 +7,8 @@ import successAnim from "../../animation/Payment Successful Animation.json";
 import { motion, AnimatePresence } from "framer-motion";
 
 const schema = Yup.object().shape({
-  cardName: Yup.string().required("اسم البطاقة مطلوب"),
-  amount: Yup.number()
+  name: Yup.string().required("اسم البطاقة مطلوب"),
+  balance: Yup.number()
     .typeError("المبلغ لازم يكون رقم")
     .positive("المبلغ لازم يكون أكبر من صفر")
     .required("المبلغ مطلوب"),
@@ -86,13 +86,13 @@ const AddWalletModal = ({ isAddOpen, setIsAddOpen, budgets, onSubmit }) => {
                   </label>
                   <input
                     type="text"
-                    {...register("cardName")}
+                    {...register("name")}
                     className="w-full rounded-xl p-3 bg-gray-100 placeholder-gray-400 focus:outline-none transition-all"
                     placeholder="مثال: مصاريف السوق"
                   />
-                  {errors.cardName && (
+                  {errors.name && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.cardName.message}
+                      {errors.name.message}
                     </p>
                   )}
                 </div>
@@ -103,13 +103,13 @@ const AddWalletModal = ({ isAddOpen, setIsAddOpen, budgets, onSubmit }) => {
                   </label>
                   <input
                     type="number"
-                    {...register("amount")}
+                    {...register("balance")}
                     className="w-full rounded-xl p-3 bg-gray-100 placeholder-gray-400 focus:outline-none transition-all"
                     placeholder="مثال: 200000"
                   />
-                  {errors.amount && (
+                  {errors.balance && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.amount.message}
+                      {errors.balance.message}
                     </p>
                   )}
                 </div>
