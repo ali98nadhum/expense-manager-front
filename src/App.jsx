@@ -3,6 +3,7 @@ import Layout from "./Components/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import WalletPage from "./pages/WalletPage/WalletPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/wallet" element={ <WalletPage/> } />
           <Route path="/login" element= { <LoginPage/> } />
+          <Route path="/register" element={ <RegisterPage/> } />
         </Route>
       </Routes>
     </BrowserRouter>

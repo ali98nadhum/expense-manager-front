@@ -4,6 +4,8 @@ import { FiMail, FiLock } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { Link} from "react-router-dom";
+
 
 
 const schema = Yup.object().shape({
@@ -85,9 +87,9 @@ const LoginPage = () => {
 
         <p className="text-center text-gray-500 mt-4 text-sm">
           لا تملك حساب؟{" "}
-          <a href="#" className="text-indigo-500 font-semibold hover:underline">
+          <Link to="/register" className="text-indigo-500 font-semibold hover:underline">
             أنشئ حساب الآن
-          </a>
+          </Link>
         </p>
       </motion.div>
     </div>
