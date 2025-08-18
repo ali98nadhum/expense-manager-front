@@ -4,11 +4,15 @@ import headerIcon from "../../assets/icons/headerIcon.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoSettingsOutline } from "react-icons/io5";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Header = ({ isOpen, setIsOpen }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -23,6 +27,11 @@ const Header = ({ isOpen, setIsOpen }) => {
       }
     }
   }, []);
+
+   const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    navigate("/login"); // 🔹 يوجه المستخدم لصفحة تسجيل الدخول بدون Refresh
+  };
 
 
   return (
@@ -64,7 +73,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                   <button className="block w-full text-right px-4 py-2 hover:bg-gray-100">
                     الملف الشخصي
                   </button>
-                  <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 text-red-500">
+                  <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 text-red-500" onClick={handleLogout} >
                     تسجيل الخروج
                   </button>
                 </motion.div>
