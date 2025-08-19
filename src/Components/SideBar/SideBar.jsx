@@ -14,7 +14,7 @@ const SideBar = ({isOpen , setIsOpen , }) => {
 
   const menuItems = [
     { name: "الرئيسية", icon: homeIcon , link: "/" },
-    { name: "الميزانيه", icon: budgetIcon },
+    { name: "الميزانيه", icon: budgetIcon  , link: "/budget"},
     { name: "محافظي", icon: walletIcon  , link:"/wallet"},
     { name: "الصرفيات", icon: expensesIcon },
     { name: "الاهداف", icon: goalsIcon},
