@@ -46,6 +46,31 @@ export const authStore = create((set) => ({
 
 
 
+   registerUser: async (name, email, password) => {
+    try {
+      const res = await axios.post("http://localhost:8050/api/v1/auth/register", {
+        name,
+        email,
+        password,
+      });
+
+      const data = res.data;
+
+      return { success: true };
+    } catch (err) {
+      console.error("Register Error:", err);
+
+      let message = "فشل إنشاء الحساب";
+      if (err.response?.data?.message) {
+        message = err.response.data.message;
+      }
+
+      return { success: false, error: message };
+    }
+  },
+
+
+
 
 
 }));
